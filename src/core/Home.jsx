@@ -35,8 +35,8 @@ const Home = () => {
 
 	return (
 		<Layout
-			title='Kristes Shop Home Page'
-			description='Parduodami Kristijono ir Austejos Rubeliai'
+			title='Kristinos Parduotuvė'
+			description='Viskas Jūsų Mažiesiems Išdykėliams'
 			className='container-fluid'>
 			<h2 className='mb-4'>New Arrivals</h2>
 			<div className='row'>

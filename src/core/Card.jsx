@@ -6,15 +6,18 @@ const Card = ({ product }) => {
 	return (
 		<div className='col-4 mb-3'>
 			<div className='card'>
-				<div className='card-header'>{product.name}</div>
+				<div className='card-header'>
+					{' '}
+					<h4 className='text-center'>{product.name}</h4>
+				</div>
 				<div className='card-body'>
 					<ShowImage item={product} url='product' />
-					<p>{product.description}</p>
-					<p>${product.price}</p>
+					<p>{product.description.substring(0, 100)}</p>
+					<p>€{product.price}</p>
 					<Link to='/'>
 						<button className='btn btn-outline-primary my-2'>View Product</button>
 					</Link>
-					<button className='btn btn-outline-warning my-2'>Add to Cart</button>
+					<button className='btn btn-outline-warning my-2 mx-2'>Add to Cart</button>
 				</div>
 			</div>
 		</div>
