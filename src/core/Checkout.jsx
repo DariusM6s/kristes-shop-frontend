@@ -1,7 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { getProducts, getBraintreeClientToken, processPayment, createOrder } from './apiCore';
+import {
+	// getProducts,
+	getBraintreeClientToken,
+	processPayment,
+	createOrder
+} from './apiCore';
 import { emptyCart } from './cartHelpers';
-import Card from './Card';
+// import Card from './Card';
 import { isAuthenticated } from '../auth';
 import { Link } from 'react-router-dom';
 // import 'braintree-web'; // not using this package
@@ -32,9 +37,12 @@ const Checkout = ({ products, setRun = f => f, run = undefined }) => {
 		});
 	};
 
-	useEffect(() => {
-		getToken(userId, token);
-	}, []);
+	useEffect(
+		() => {
+			getToken(userId, token);
+		},
+		[ userId, token ]
+	);
 
 	const handleAddress = event => {
 		setData({ ...data, address: event.target.value });
@@ -63,7 +71,7 @@ const Checkout = ({ products, setRun = f => f, run = undefined }) => {
 		// send the nonce to your server
 		// nonce = data.instance.requestPaymentMethod()
 		let nonce;
-		let getNonce = data.instance
+		data.instance
 			.requestPaymentMethod()
 			.then(data => {
 				// console.log(data);
@@ -167,7 +175,7 @@ const Checkout = ({ products, setRun = f => f, run = undefined }) => {
 
 	return (
 		<div>
-			<h2>Total: ${getTotal()}</h2>
+			<h2>Total: €{getTotal()}</h2>
 			{showLoading(data.loading)}
 			{showSuccess(data.success)}
 			{showError(data.error)}
